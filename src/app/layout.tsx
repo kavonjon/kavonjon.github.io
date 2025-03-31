@@ -25,11 +25,13 @@ export const metadata: Metadata = {
   description: "Personal portfolio website showcasing my projects and skills",
   icons: {
     icon: [
-      { url: `/favicon.svg?v=${faviconVersion}`, type: 'image/svg+xml' }
+      { url: `/favicon.svg?v=${faviconVersion}`, type: 'image/svg+xml' },
+      { url: `/favicon-32x32.png?v=${faviconVersion}`, sizes: '32x32', type: 'image/png' }
     ],
     apple: [
-      { url: `/favicon.svg?v=${faviconVersion}`, type: 'image/svg+xml' }
-    ]
+      { url: `/apple-touch-icon.png?v=${faviconVersion}`, sizes: '180x180', type: 'image/png' }
+    ],
+    shortcut: [`/favicon-32x32.png?v=${faviconVersion}`]
   },
   manifest: `/site.webmanifest?v=${faviconVersion}`,
   appleWebApp: {
@@ -54,7 +56,8 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <head>
         <link rel="icon" href={`/favicon.svg?v=${faviconVersion}`} type="image/svg+xml" />
-        <link rel="apple-touch-icon" href={`/favicon.svg?v=${faviconVersion}`} type="image/svg+xml" />
+        <link rel="alternate icon" href={`/favicon-32x32.png?v=${faviconVersion}`} type="image/png" />
+        <link rel="apple-touch-icon" href={`/apple-touch-icon.png?v=${faviconVersion}`} />
         <link rel="manifest" href={`/site.webmanifest?v=${faviconVersion}`} />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
