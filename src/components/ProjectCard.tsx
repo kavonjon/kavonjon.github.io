@@ -60,9 +60,9 @@ export default function ProjectCard({
   };
   
   // Handle demo link click
-  const handleDemoClick = (e: React.MouseEvent) => {
+  const handleDemoClick = (_e: React.MouseEvent) => {
     if (isDemoOnRender && !isDemoReady && !isLoadingTimedOut) {
-      e.preventDefault();
+      _e.preventDefault();
       if (!isDemoLoading) {
         // If not currently loading, retry the ping
         pingDemoServer(demoUrl as string);

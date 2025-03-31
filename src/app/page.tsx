@@ -41,7 +41,7 @@ export default function Home() {
         <section className={`headline-section ${isLoaded ? 'appear' : ''}`} style={{ padding: '1.5rem 0 0' }}>
           <div style={{ maxWidth: '64rem', margin: '0 auto', padding: '0 1rem' }}>
             <h2 className="headline">
-              I help small organizations and underserved communities turn legacy systems and complex data into modern, mobile-first apps—even if they're not sure where to start.
+              I help small organizations and underserved communities turn legacy systems and complex data into modern, mobile-first apps&mdash;even if they&apos;re not sure where to start.
             </h2>
           </div>
         </section>
