@@ -6,6 +6,10 @@
       "src": "/favicon.ico",
       "sizes": "any",
       "type": "image/x-icon"
+    },
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml"
     }
   ],
   "theme_color": "#0B090A",
