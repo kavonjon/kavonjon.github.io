@@ -1,0 +1,10 @@
+{
+  "name": "Saturn Favicon",
+  "description": "Black background with red Saturn and white rings",
+  "colors": {
+    "background": "#0B090A",
+    "planet": "#BA181B",
+    "ring": "#FFFFFF"
+  },
+  "sizes": ["16x16", "32x32", "48x48"]
+} 
