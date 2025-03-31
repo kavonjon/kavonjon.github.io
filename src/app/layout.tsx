@@ -27,8 +27,24 @@ export const metadata: Metadata = {
     icon: [
       { url: `/favicon.svg?v=${faviconVersion}`, type: 'image/svg+xml' },
       { url: `/favicon.ico?v=${faviconVersion}`, sizes: 'any' }
-    ]
-  }
+    ],
+    apple: [
+      { url: `/apple-touch-icon.png?v=${faviconVersion}`, sizes: '180x180', type: 'image/png' }
+    ],
+    shortcut: [`/favicon.ico?v=${faviconVersion}`]
+  },
+  manifest: `/site.webmanifest?v=${faviconVersion}`,
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: "Kavon Hooshiar | Developer Portfolio"
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  themeColor: '#ffffff'
 };
 
 export default function RootLayout({
@@ -41,6 +57,12 @@ export default function RootLayout({
       <head>
         <link rel="icon" href={`/favicon.svg?v=${faviconVersion}`} type="image/svg+xml" />
         <link rel="alternate icon" href={`/favicon.ico?v=${faviconVersion}`} />
+        <link rel="apple-touch-icon" href={`/apple-touch-icon.png?v=${faviconVersion}`} />
+        <link rel="manifest" href={`/site.webmanifest?v=${faviconVersion}`} />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Kavon Hooshiar | Developer Portfolio" />
+        <meta name="theme-color" content="#ffffff" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
