@@ -50,7 +50,7 @@ export default function ProjectCard({
         signal: controller.signal,
       });
       setIsDemoReady(true);
-    } catch (_) {
+    } catch {
       // If aborted or failed, that's fine
       console.log("Wake-up ping completed or aborted");
     } finally {
