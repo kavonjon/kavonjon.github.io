@@ -50,7 +50,7 @@ export default function ProjectCard({
         signal: controller.signal,
       });
       setIsDemoReady(true);
-    } catch (e) {
+    } catch (_) {
       // If aborted or failed, that's fine
       console.log("Wake-up ping completed or aborted");
     } finally {
@@ -60,9 +60,9 @@ export default function ProjectCard({
   };
   
   // Handle demo link click
-  const handleDemoClick = (_e: React.MouseEvent) => {
+  const handleDemoClick = (event: React.MouseEvent) => {
     if (isDemoOnRender && !isDemoReady && !isLoadingTimedOut) {
-      _e.preventDefault();
+      event.preventDefault();
       if (!isDemoLoading) {
         // If not currently loading, retry the ping
         pingDemoServer(demoUrl as string);
