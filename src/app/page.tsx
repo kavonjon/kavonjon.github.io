@@ -126,6 +126,10 @@ export default function Home() {
         
         .project-card-wrapper {
           transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+          display: inline-block;
+          width: 100%;
+          margin-bottom: 1.5rem;
+          break-inside: avoid;
         }
         
         .headline {
@@ -152,14 +156,14 @@ export default function Home() {
         }
         
         .projects-grid {
-          display: grid;
-          gap: 1.5rem;
-          grid-template-columns: repeat(1, 1fr);
+          display: block;
+          column-count: 1;
+          column-gap: 1.5rem;
         }
         
         @media (min-width: 768px) {
           .projects-grid {
-            grid-template-columns: repeat(2, 1fr);
+            column-count: 2;
           }
         }
         
