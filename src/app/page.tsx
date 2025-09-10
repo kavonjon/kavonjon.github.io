@@ -19,6 +19,12 @@ export default function Home() {
   
   const projects = [
     {
+      title: "Endangered Languages Program Website Demo",
+      description: "A custom React and Django application for the Endangered Languages Project that wrangles a complex data model with a full featured CMS including custom roles and permissions per data type, and automations like stale content clean up for community driven content.",
+      tags: ["React", "TypeScript", "Django", "Django Rest Framework", "CMS"],
+      demoUrl: "https://elp-demo.kavonhooshiar.com"
+    },
+    {
       title: "Youth Language Fair Management Platform",
       description: "A comprehensive web application designed to facilitate the organization and management of educational fairs focused on indigenous language and cultural education. The system streamlines student registration, submission management, and fair administration through a user-friendly interface, allowing schools and programs to participate effectively in cultural education initiatives. With features including student registration, submission tracking, statistical reporting, and administrative controls, the platform serves as a central hub for managing all aspects of these important cultural and educational events. \n\nIt is currently used by The Sam Noble Museum for the Oklahoma Native American Youth Language Fair.",
       tags: ["Django", "Django Rest Framework", "Javascript", "Bootstrap"],
