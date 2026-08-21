@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -35,12 +35,14 @@ export const metadata: Metadata = {
     statusBarStyle: 'default',
     title: "Kavon Hooshiar | Developer Portfolio"
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
-  themeColor: '#0B090A'
+};
+
+// maximumScale is intentionally omitted: capping zoom is an accessibility
+// barrier, and Next was already discarding it from the metadata export.
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#0B090A',
 };
 
 export default function RootLayout({

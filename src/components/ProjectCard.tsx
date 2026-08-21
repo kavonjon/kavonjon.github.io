@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 interface ProjectCardProps {
   title: string;
@@ -20,23 +20,15 @@ export default function ProjectCard({
   demoUrl,
   isDemoOnRender = false
 }: ProjectCardProps) {
-  // States for demo loading
-  const [isDemoLoading, setIsDemoLoading] = useState(false);
+  // States for demo loading. A Render-hosted demo is pinged on mount, so it
+  // starts out loading to avoid a cascading render from the effect below.
+  const [isDemoLoading, setIsDemoLoading] = useState(isDemoOnRender && !!demoUrl);
   const [isDemoReady, setIsDemoReady] = useState(!isDemoOnRender);
   const [isLoadingTimedOut, setIsLoadingTimedOut] = useState(false);
   
-  // Effect to ping Render.com demo when component mounts
-  useEffect(() => {
-    if (isDemoOnRender && demoUrl) {
-      pingDemoServer(demoUrl);
-    }
-  }, [isDemoOnRender, demoUrl]);
-  
-  // Function to ping the demo server to wake it up
-  const pingDemoServer = async (url: string) => {
-    setIsDemoLoading(true);
-    setIsLoadingTimedOut(false);
-    
+  // Pings the demo server to wake it up. Callers own the loading state going in;
+  // this clears it once the request settles.
+  const pingDemoServer = useCallback(async (url: string) => {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => {
       controller.abort();
@@ -57,7 +49,18 @@ export default function ProjectCard({
       clearTimeout(timeoutId);
       setIsDemoLoading(false);
     }
-  };
+  }, []);
+  
+  // Effect to ping Render.com demo when component mounts
+  useEffect(() => {
+    if (isDemoOnRender && demoUrl) {
+      // set-state-in-effect does not track await boundaries, so it flags any
+      // callee that reaches setState. Every setState here runs once the request
+      // settles, not synchronously during the effect.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      pingDemoServer(demoUrl);
+    }
+  }, [isDemoOnRender, demoUrl, pingDemoServer]);
   
   // Handle demo link click
   const handleDemoClick = (event: React.MouseEvent) => {
@@ -65,6 +68,8 @@ export default function ProjectCard({
       event.preventDefault();
       if (!isDemoLoading) {
         // If not currently loading, retry the ping
+        setIsDemoLoading(true);
+        setIsLoadingTimedOut(false);
         pingDemoServer(demoUrl as string);
       }
     }

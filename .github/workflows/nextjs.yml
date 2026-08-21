@@ -32,7 +32,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: "22"
           cache: 'npm'
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -41,7 +41,7 @@ jobs:
           # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
           static_site_generator: next
       - name: Restore cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             .next/cache
@@ -52,6 +52,9 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Install dependencies
         run: npm ci
+      # next build stopped running ESLint in Next.js 16, so lint explicitly.
+      - name: Lint
+        run: npm run lint
       - name: Build with Next.js
         run: npm run build
       - name: Upload artifact
